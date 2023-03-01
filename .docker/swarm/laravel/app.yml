@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+
+  app:
+    image: *BASE_IMAGE*/app:${APP_VERSION}
+
+    networks:
+      - app
+      - maria
+
+    volumes:
+      - public_storage:/var/www/html/storage/app/public
+      - storage:/var/www/html/storage/app
+
+      - app_framework_cache_data:/var/www/html/storage/framework/cache/data
+      - app_framework_sessions:/var/www/html/storage/framework/sessions
+      - app_framework_views:/var/www/html/storage/framework/views
+      - app_logs:/var/www/html/storage/logs
+
+    secrets:
+      - source: laravel_env
+        target: /var/www/html/.env
+
+networks:
+  app:
+  maria:
+
+volumes:
+  public_storage:
+  storage:
+
+  app_framework_cache_data:
+  app_framework_sessions:
+  app_framework_views:
+  app_logs:
+
+secrets:
+  laravel_env:
+    external: true

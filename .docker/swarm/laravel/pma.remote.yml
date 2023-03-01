@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  pma:
+    depends_on:
+      - maria
+
+    deploy:
+      labels:
+        - traefik.constraint-label=traefik
+        - traefik.docker.network=traefik
+        - traefik.enable=true
+        - traefik.http.services.pma.loadbalancer.server.port=80
+
+        - traefik.http.middlewares.https-redirect.redirectscheme.scheme=https
+        - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true
+
+        # Router: HTTP
+        - traefik.http.routers.laravel_db-pma-http.rule=Host(`pma.*HOST*`)
+        - traefik.http.routers.laravel_db-pma-http.entrypoints=http
+        - traefik.http.routers.laravel_db-pma-http.middlewares=https-redirect
+
+        # Router: HTTPS
+        - traefik.http.routers.laravel_db-pma-https.rule=Host(`pma.*HOST*`)
+        - traefik.http.routers.laravel_db-pma-https.entrypoints=https
+        - traefik.http.routers.laravel_db-pma-https.tls=true
+        - traefik.http.routers.laravel_db-pma-https.tls.certresolver=le
+
+    image: phpmyadmin:latest
+
+    networks:
+      - maria
+      - traefik
+
+networks:
+  maria:
+  traefik:
+    external: true

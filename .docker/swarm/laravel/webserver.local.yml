@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+
+  webserver:
+    depends_on:
+      - app
+
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik
+        - traefik.constraint-label=traefik
+        - traefik.http.services.webserver.loadbalancer.server.port=80
+
+        - traefik.http.routers.laravel-webserver-http.rule=Host(`localhost`)
+        - traefik.http.routers.laravel-webserver-http.entrypoints=http
+
+    image: *BASE_IMAGE*/webserver:${WEBSERVER_VERSION}
+
+    networks:
+      - app
+      - traefik
+
+networks:
+  traefik:
+    external: true
