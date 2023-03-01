@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  maria:
+    image: mariadb:latest
+    environment:
+      MYSQL_DATABASE: $MARIA_DATABASE
+      MYSQL_USER: $MARIA_USER
+      MYSQL_PASSWORD: $MARIA_PASSWORD
+      MYSQL_ROOT_PASSWORD: $MARIA_ROOT_PASSWORD
+    hostname: db
+    volumes:
+      - maria_data:/var/lib/mysql
+    networks:
+      - maria
+
+networks:
+  maria:
+
+volumes:
+  maria_data:
