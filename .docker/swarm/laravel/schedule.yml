@@ -12,11 +12,7 @@ services:
       - maria
 
     volumes:
-      - public_storage:/var/www/html/storage/app/public
-      - storage:/var/www/html/storage/app
-
-      - schedule_framework_cache_data:/var/www/html/storage/framework/cache/data
-      - schedule_logs:/var/www/html/storage/logs
+      - storage:/var/www/html/storage
 
     secrets:
       - source: laravel_env
@@ -24,10 +20,6 @@ services:
 
 networks:
   maria:
-
-volumes:
-  schedule_framework_cache_data:
-  schedule_logs:
 
 secrets:
   laravel_env:
