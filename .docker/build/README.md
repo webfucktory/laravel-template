@@ -42,7 +42,7 @@ docker build \
 
 ```shell
 docker build \
-  -f .docker/build/schedule.Dockerfile \
+  -f schedule.Dockerfile \
   -t $BASE_IMAGE/schedule \
-  .
+  ../..
 ```
