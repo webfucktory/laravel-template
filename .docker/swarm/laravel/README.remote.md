@@ -42,10 +42,6 @@ export $(grep -v '^#' .env | xargs) && \
 docker stack deploy -c app.yml laravel
 ```
 
-```shell
-docker service update --network-add laravel_db_maria laravel_app
-```
-
 # (optional) Queue worker
 
 ```shell
@@ -53,19 +49,11 @@ export $(grep -v '^#' .env | xargs) && \
 docker stack deploy -c queue.yml laravel
 ```
 
-```shell
-docker service update --network-add laravel_db_maria laravel_queue
-```
-
 # (optional) Schedule runner
 
 ```shell
 export $(grep -v '^#' .env | xargs) && \
 docker stack deploy -c queue.yml laravel
-```
-
-```shell
-docker service update --network-add laravel_db_maria laravel_schedule
 ```
 
 # Webserver
