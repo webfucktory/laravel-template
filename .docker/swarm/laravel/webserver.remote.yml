@@ -18,12 +18,12 @@ services:
         # - traefik.http.middlewares.laravel-webserver-auth.basicauth.users=root:${WEBSERVER_HASHED_PASSWORD}
 
         # Router: HTTP
-        - traefik.http.routers.laravel-webserver-http.rule=Host(`*HOST*`)
+        - traefik.http.routers.laravel-webserver-http.rule=Host(`${WEBSERVER_HOST}`)
         - traefik.http.routers.laravel-webserver-http.entrypoints=http
         - traefik.http.routers.laravel-webserver-http.middlewares=https-redirect
 
         # Router: HTTPS
-        - traefik.http.routers.laravel-webserver-https.rule=Host(`*HOST*`)
+        - traefik.http.routers.laravel-webserver-https.rule=Host(`${WEBSERVER_HOST}`)
         - traefik.http.routers.laravel-webserver-https.entrypoints=https
         - traefik.http.routers.laravel-webserver-https.tls=true
         - traefik.http.routers.laravel-webserver-https.tls.certresolver=le
