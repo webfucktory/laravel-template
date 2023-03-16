@@ -53,7 +53,7 @@ docker stack deploy -c queue.yml laravel
 
 ```shell
 export $(grep -v '^#' .env | xargs) && \
-docker stack deploy -c queue.yml laravel
+docker stack deploy -c schedule.yml laravel
 ```
 
 # Webserver
