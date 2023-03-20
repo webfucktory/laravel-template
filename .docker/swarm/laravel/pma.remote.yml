@@ -17,12 +17,12 @@ services:
         - traefik.http.middlewares.https-redirect.redirectscheme.permanent=true
 
         # Router: HTTP
-        - traefik.http.routers.laravel_db-pma-http.rule=Host(`pma.*HOST*`)
+        - traefik.http.routers.laravel_db-pma-http.rule=Host(`pma.${HOST}`)
         - traefik.http.routers.laravel_db-pma-http.entrypoints=http
         - traefik.http.routers.laravel_db-pma-http.middlewares=https-redirect
 
         # Router: HTTPS
-        - traefik.http.routers.laravel_db-pma-https.rule=Host(`pma.*HOST*`)
+        - traefik.http.routers.laravel_db-pma-https.rule=Host(`pma.${HOST}`)
         - traefik.http.routers.laravel_db-pma-https.entrypoints=https
         - traefik.http.routers.laravel_db-pma-https.tls=true
         - traefik.http.routers.laravel_db-pma-https.tls.certresolver=le
