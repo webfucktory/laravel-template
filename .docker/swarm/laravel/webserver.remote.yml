@@ -36,5 +36,6 @@ services:
       - traefik
 
 networks:
+  app:
   traefik:
     external: true
