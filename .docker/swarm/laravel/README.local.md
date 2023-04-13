@@ -3,7 +3,7 @@ cp example.env .env
 ```
 
 ```shell
-docker secret create laravel_env .env
+docker secret create laravel_env ../../../.env
 ```
 
 ```shell
@@ -65,7 +65,7 @@ docker stack deploy -c webserver.local.yml laravel
 
 ```shell
 docker secret rm laravel_env && \
-docker secret create laravel_env .env
+docker secret create laravel_env ../../../.env
 ```
 
 ```shell
