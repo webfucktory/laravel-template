@@ -62,4 +62,6 @@ COPY --from=vendor /var/www/html .
 
 COPY --from=build /root/public/build public/build/
 
-RUN chown www-data:www-data -R /var/www
+RUN \
+    chown www-data:www-data -R /var/www \
+    && chmod g+s -R /var/www/html/storage/
