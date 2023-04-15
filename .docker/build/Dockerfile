@@ -64,4 +64,4 @@ COPY --from=build /root/public/build public/build/
 
 RUN \
     chown www-data:www-data -R /var/www \
-    && chmod g+s -R /var/www/html/storage/
+    && chmod ug+s -R /var/www/html/storage/
