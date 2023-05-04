@@ -11,9 +11,9 @@ services:
         - traefik.enable=true
         - traefik.docker.network=traefik
         - traefik.constraint-label=traefik
-        - traefik.http.routers.laravel_db-pma-http.rule=Host(`pma.localhost`)
-        - traefik.http.routers.laravel_db-pma-http.entrypoints=http
-        - traefik.http.services.laravel_db-pma-http.loadbalancer.server.port=80
+        - traefik.http.routers.laravel_pma_http.rule=Host(`pma.localhost`)
+        - traefik.http.routers.laravel_pma_http.entrypoints=http
+        - traefik.http.services.laravel_pma.loadbalancer.server.port=80
 
     image: phpmyadmin:latest
 
