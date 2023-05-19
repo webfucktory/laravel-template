@@ -37,6 +37,15 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
+      - name: Setup Node
+        uses: actions/setup-node@v3
+
+      - name: Install Node dependencies
+        run: yarn --prod
+
+      - name: Vite build
+        run: yarn build
+
       - name: Copy environment file
         run: cp .env.example .env
 

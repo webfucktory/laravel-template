@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+
+  queue:
+    depends_on:
+      - app
+
+    image: *BASE_IMAGE*/queue:${QUEUE_VERSION}
+
+    networks:
+      - maria
+
+    volumes:
+      - storage:/var/www/html/storage
+
+    secrets:
+      - source: laravel_env
+        target: /var/www/html/.env
+
+networks:
+  maria:
+
+secrets:
+  laravel_env:
+    external: true
